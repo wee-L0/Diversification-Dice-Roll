@@ -1,3 +1,5 @@
+# CODE STILL VERY FAULTY
+
 import numpy as np
 import matplotlib as mlt
 import random as r
@@ -9,6 +11,37 @@ class Player:
         self.bonds = bonds
         self.cash = cash
 
+    def stock_roll (self):
+        result = r.randint(0, 6)
+
+        if result in range(1, 3):
+            stk_returns = self.stocks - 0.1
+        elif result in range (4, 5):
+            stk_returns = self.stocks + 0.1
+        elif result == 6:
+            stk_returns = self.stocks + 0.2
+
+        return stk_returns
+
+    def bonds_roll (self):
+        result = r.randint(0, 6)
+
+        if result == 1:
+            bd_returns = self.bonds - 0.02
+        elif result in range(2, 4):
+            bd_returns = self.bonds + 0.03
+        elif result in range(5, 6):
+            bd_returns = self.bonds + 0.05
+
+        self.balance += (bd_returns*self.balance) # TO FIX
+
+        return bd_returns
+
+    def money_roll (self):
+        m_returns = 0.01*self.balance
+        # return self.balance += m_returns
+
+
 
 #Initial Portfolio Value
 portfolio = input("How much is the initial value of your portfolio: ")
@@ -18,13 +51,16 @@ types = ["stocks", "bonds", "cash"]
 set = [] # percentage allocation for stocks bonds and cash
 
 for i in types:
-    allocations = int(input(f"Enter the percentage allocation for {types[i]}: ")) # Why is this an error...idk
+    allocations = int(input(f"Enter the percentage allocation for {types[i]}: ")) # Would the int stuff work
     per_all = allocations / 100
     set.append(per_all)
 
-rolls = 100
-x = np.empty(rolls)
-williams = Player(100, )
+rolls = 100 # rolls can represent time steps
+x = np.empty(rolls) # I cant rmbr how this works
+player_1 = Player(portfolio, set[0], set[1], set[2])
 
 for roll in x:
-    williams.roll()
+    player_1.stock_roll()
+    player_1.bonds_roll()
+    player_1.money_roll()
+
