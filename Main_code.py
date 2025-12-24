@@ -1,0 +1,30 @@
+import numpy as np
+import matplotlib as mlt
+import random as r
+
+class Player:
+    def __init__(self, money, stocks, bonds, cash):
+        self.balance = money
+        self.stocks = stocks
+        self.bonds = bonds
+        self.cash = cash
+
+
+#Initial Portfolio Value
+portfolio = input("How much is the initial value of your portfolio: ")
+
+#Allocations breakdown
+types = ["stocks", "bonds", "cash"]
+set = [] # percentage allocation for stocks bonds and cash
+
+for i in types:
+    allocations = int(input(f"Enter the percentage allocation for {types[i]}: ")) # Why is this an error...idk
+    per_all = allocations / 100
+    set.append(per_all)
+
+rolls = 100
+x = np.empty(rolls)
+williams = Player(100, )
+
+for roll in x:
+    williams.roll()
