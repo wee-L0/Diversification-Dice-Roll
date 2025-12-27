@@ -11,7 +11,7 @@ class Player:
         self.bonds = bonds
         self.cash = cash
 
-    def stock_roll (self):
+    def stock_roll (self): # simulates the roll of the dice for stocks
         result = r.randint(0, 6)
 
         if result in range(1, 3):
@@ -23,7 +23,7 @@ class Player:
 
         return stk_returns
 
-    def bonds_roll (self):
+    def bonds_roll (self): # simulates the roll of the dice for bonds
         result = r.randint(0, 6)
 
         if result == 1:
@@ -37,7 +37,7 @@ class Player:
 
         return bd_returns
 
-    def money_roll (self):
+    def money_roll (self): # simulates the roll of the dice for money
         m_returns = 0.01*self.balance
         # return self.balance += m_returns
 
@@ -50,17 +50,22 @@ portfolio = input("How much is the initial value of your portfolio: ")
 types = ["stocks", "bonds", "cash"]
 set = [] # percentage allocation for stocks bonds and cash
 
+# determines ans stores the allocations for bond, stocks and money form the user
 for i in types:
     allocations = int(input(f"Enter the percentage allocation for {types[i]}: ")) # Would the int stuff work
     per_all = allocations / 100
     set.append(per_all)
 
-rolls = 100 # rolls can represent time steps
+rolls = 100 # rolls represent time steps
 x = np.empty(rolls) # I cant rmbr how this works
 player_1 = Player(portfolio, set[0], set[1], set[2])
 
+# simulates the portfolio for a player for n time steps .i.e. rolls
 for roll in x:
     player_1.stock_roll()
     player_1.bonds_roll()
     player_1.money_roll()
 
+profit = player_1.balance
+
+print(f"The profit of the portfolio after {rolls} rolls: {profit}")
